@@ -56,3 +56,35 @@ content:
     type: file
     path: src/content/spec/about.md
     format: raw
+
+  - name: site
+    label: 站点设置
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: title
+        label: 博客名称
+        type: string
+        required: true
+      - name: subtitle
+        label: 副标题
+        type: string
+      - name: name
+        label: 昵称
+        type: string
+        required: true
+      - name: bio
+        label: 一句话简介
+        type: text
+      - name: avatar
+        label: 头像
+        type: image
+        required: true
+      - name: hue
+        label: 主题色相（蓝色为250）
+        type: number
+        required: true
+        options:
+          min: 0
+          max: 360
