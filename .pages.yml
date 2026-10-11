@@ -1,0 +1,58 @@
+media:
+  input: public/uploads
+  output: /uploads
+  categories: [image]
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    subfolders: true
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: published
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: draft
+        label: 草稿（不在博客展示）
+        type: boolean
+        default: true
+      - name: description
+        label: 摘要
+        type: text
+      - name: image
+        label: 封面图
+        type: image
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: category
+        label: 分类
+        type: string
+      - name: lang
+        label: 文章语言（留空使用站点语言）
+        type: string
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+  - name: about
+    label: 关于页面
+    type: file
+    path: src/content/spec/about.md
+    format: raw
