@@ -1,12 +1,21 @@
 ---
 title: 记录一下第一次上古NES游戏补丁制作--第一章（NES程序的基本构成与运行）
 published: 2026-10-12
+updated: 2026-10-12
 draft: true
+description: 从 CPU、PPU、PRG-ROM、CHR 图块和 Mapper 入手，理解 NES 程序运行与中文字库制作中的限制。
 category: 逆向工程
-lang: Chinese
+lang: zh_CN
 ---
+
+import NesBankExplorer from "../../components/interactive/NesBankExplorer";
+import NesTileExplorer from "../../components/interactive/NesTileExplorer";
+import NesFontCapacity from "../../components/interactive/NesFontCapacity";
+
 在正式开始进入补丁制作之前还是先科普一下一些小知识  
-1.NES的基本构成  
+
+## 1. NES 的基本构成
+
 NES 的主要工作由两个核心部件承担  
 **CPU（中央处理器）**：负责运行游戏程序，包括人物移动、剧情、碰撞检测、音乐控制和游戏逻辑。
 
@@ -26,7 +35,7 @@ NES 的主要工作由两个核心部件承担
 
 PRG给出程序的运行逻辑，CHR提供图形素材，最后由PPU进行组装构成最后的完整图形界面  
 
-2.PRG-ROM
+## 2. PRG-ROM
 
 众所周知，NES游戏使用基于6502汇编语言架构的 8 位 CPU。游戏中的机器指令通常存放在 PRG-ROM 中。
 
@@ -42,7 +51,13 @@ PRG给出程序的运行逻辑，CHR提供图形素材，最后由PPU进行组�
 
 它有些类似于一本厚书：CPU 的桌面一次只能摊开有限的页面，但可以随时翻到其他章节。
 
-3.CHR-ROM
+### 动手看看：地址窗口与 PRG Bank
+
+试着切换 Bank，然后分别输入 `$8000` 和 `$C000`：CPU 的地址窗口没有变，但前者对应的 PRG 数据会变化，后者仍落在固定的最后一个 Bank。这里显示的是 PRG 区域内的偏移，不包含 ROM 文件头。
+
+<NesBankExplorer client:visible />
+
+## 3. CHR-ROM
 
 区别于现代计算机可以随便往屏幕上绘制像素，NES可以说是非常的朴素了，NES绘制图形主要是依靠于Tile（图块）的图形系统  
 一个标准 NES Tile 的尺寸是 **8×8 像素**，每个像素使用 2 bit 表示颜色编号，因此一个 Tile 需要：
@@ -57,7 +72,7 @@ PPU 的图案表地址范围为 `$0000–$1FFF`，总共 8 KiB，可以容纳 51
 
 PPU能访问的Tile空间只有8KiB，但是借助于mapper，可以在运行时将不同的CHR Bank映射到PPU的图案表地址中。这样游戏可以选择在不同的场景下调用不同的游戏资源，而不是将所有的Tile压缩到8KiB的空间中
 
-4.PPU与画面展示
+## 4. PPU 与画面展示
 
 前面说到NES游戏的显示主要由CHR-ROM进行负责，但是仅有这个是并不够的，实际显示的过程中高度依赖于 **Nametable（名称表）**
 
@@ -69,7 +84,13 @@ Nametable中存储的是背景图块的编号以及排列方式，PPU 根据 Nam
 
 PPU 最终逐扫描线生成画面，标准 NES 的可见画面为 256×240 像素。
 
-5.CPU与PPU
+### 动手看看：双位平面与图块组合
+
+点击下面的像素，把颜色编号从 0 切换到 1、2、3，观察前后两个位平面的字节变化。再把名称表的多个位置设为同一个 Tile ID：编辑那个图块后，所有引用它的位置都会一起改变。
+
+<NesTileExplorer client:visible />
+
+## 5. CPU 与 PPU
 
 CPU 和 PPU 并不共享同一个普通内存地址空间。
 
@@ -83,7 +104,7 @@ VBlank 是一帧画面绘制结束后、下一帧开始前的一小段时间。
 
 除此之外，游戏还可以利用 Sprite-0 Hit 等机制，在一帧画面的中途同步修改滚动或图块映射状态，实现分屏、状态栏等特殊效果。
 
-6.与现代主机游戏的区别
+## 6. 与现代主机游戏的区别
 
 相信说了上面这么多的理论知识，傻子也能意识到汉化过程中遇到的最大难题，也就是中文字库的显示，严肃区别于英文字库与日语字库，后者往往仅需不到50个slot（槽位）就能拼凑出所欲的单词，进而组成句子，但是中文博大精深，一部完整的游戏至少需要上百个汉字来组成句子，假定使用16x16像素汉字  
 一个汉字通常需要四个 8×8 Tile：
@@ -96,7 +117,13 @@ VBlank 是一帧画面绘制结束后、下一帧开始前的一小段时间。
 
 如果使用 CHR-ROM，游戏就需要提前安排不同的字库 Bank；如果使用 CHR-RAM，则可以让 CPU 从 PRG-ROM 中读取字形，再将当前需要的图块上传到 PPU 可访问的 RAM 中。  
   
-七、总结
+### 动手看看：字库需要多少空间
+
+下面按未压缩、未复用图块的字形数据估算。默认的 1500 个 16×16 汉字对应 6000 个 Tile、93.75 KiB；单个背景图案表的 4 KiB 空间，全部拿来放字形时也只能常驻 64 个这样的汉字。
+
+<NesFontCapacity client:visible />
+
+## 七、总结
 
 NES 的图形架构，本质上是一个高度依赖专用硬件和有限存储窗口的系统。
 
@@ -105,3 +132,5 @@ PRG-ROM 负责储存程序与数据，CHR-ROM 或 CHR-RAM 提供图块，CPU 运
 这种设计虽然受到非常严格的硬件限制，却也催生了许多巧妙的技术，例如 CHR Bank Switching、Sprite-0 分屏和动态字形加载。
 
 对于今天研究 NES 游戏逆向与汉化的人来说，理解这些机制，往往就是从简单修改 ROM 迈向真正改造游戏引擎的第一步。
+
+交互示例的硬件布局参考：[UxROM](https://www.nesdev.org/wiki/INES_Mapper_002)、[PPU 图案表](https://www.nesdev.org/wiki/CHR)、[名称表](https://www.nesdev.org/wiki/Nametable)和[属性表](https://www.nesdev.org/wiki/PPU_attribute_tables)。面板使用自绘数据说明原理，不读取实际游戏 ROM，也不模拟所有 Mapper 或 PPU 时序。

@@ -1,0 +1,40 @@
+.nes-tile-explorer { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--line-divider); border-radius: 1rem; background: var(--card-bg); font-family: inherit; line-height: 1.5; }
+.nes-tile-explorer .nes-heading, .nes-tile-explorer .nes-subheading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.nes-tile-explorer .nes-heading h3 { margin: .25rem 0 0; font-size: 1.15rem; }
+.nes-tile-explorer .nes-eyebrow { color: var(--primary); font-size: .7rem; letter-spacing: .08em; }
+.nes-tile-explorer .nes-state { padding: .35rem .65rem; border-radius: .5rem; background: var(--btn-regular-bg); font-size: .8rem; }
+.nes-tile-explorer .nes-hint, .nes-tile-explorer .nes-note { font-size: .82rem; opacity: .72; }
+.nes-tile-explorer .nes-hint { margin: .8rem 0 1.2rem; }
+.nes-tile-explorer .nes-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 1.25rem; }
+.nes-tile-explorer fieldset { box-sizing: border-box; min-width: 0; margin: 0; padding: 0; border: 0; }
+.nes-tile-explorer .nes-tile-picker legend { margin-bottom: .4rem; }
+.nes-tile-explorer .nes-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.nes-tile-explorer .nes-tile-picker, .nes-tile-explorer .nes-actions, .nes-tile-explorer .nes-palette { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: .75rem; }
+.nes-tile-explorer .nes-tile-picker button, .nes-tile-explorer .nes-actions button { padding: .5rem .65rem; border: 0; border-radius: .45rem; background: var(--btn-regular-bg); color: var(--primary); font: inherit; font-size: .8rem; cursor: pointer; }
+.nes-tile-explorer .nes-tile-picker button.is-selected { box-shadow: inset 0 0 0 1px var(--primary); }
+.nes-tile-explorer .nes-editor { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; width: min(100%, 320px); margin: 0 auto; padding: 5px; border: 1px solid var(--line-divider); border-radius: .5rem; }
+.nes-tile-explorer .nes-pixel { width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 2px; background: var(--nes-pixel-color); cursor: pointer; }
+.nes-tile-explorer .nes-pixel.is-selected, .nes-tile-explorer .nes-pixel:focus-visible { outline: 2px solid #f59e0b; outline-offset: 0; z-index: 1; }
+.nes-tile-explorer button:focus-visible, .nes-tile-explorer select:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.nes-tile-explorer .nes-actions { margin-top: .8rem; }
+.nes-tile-explorer .nes-palette { gap: .7rem; font-size: .75rem; }
+.nes-tile-explorer .nes-palette span { display: inline-flex; align-items: center; gap: .3rem; }
+.nes-tile-explorer .nes-palette i { display: inline-block; width: .8rem; height: .8rem; border: 1px solid var(--line-divider); border-radius: 2px; }
+.nes-tile-explorer .nes-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+.nes-tile-explorer .nes-metrics div { min-width: 0; padding: .6rem; border-radius: .55rem; background: var(--btn-regular-bg); }
+.nes-tile-explorer .nes-metrics span { display: block; font-size: .68rem; opacity: .7; }
+.nes-tile-explorer .nes-metrics strong { display: block; margin-top: .25rem; color: var(--primary); font-family: monospace; font-size: .95rem; overflow-wrap: anywhere; }
+.nes-tile-explorer .nes-hex { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: .3rem; margin: .75rem 0 1rem; }
+.nes-tile-explorer .nes-hex span { padding: .25rem .1rem; border-radius: .3rem; background: var(--btn-regular-bg); text-align: center; font-family: monospace; font-size: .75rem; }
+.nes-tile-explorer .nes-hex small { display: block; opacity: .55; font-size: .58rem; }
+.nes-tile-explorer .nes-hex .is-selected { background: color-mix(in srgb, #f59e0b 22%, var(--card-bg)); box-shadow: inset 0 0 0 1px #f59e0b; }
+.nes-tile-explorer .nes-subheading { margin-bottom: .5rem; font-size: .85rem; }
+.nes-tile-explorer .nes-subheading span { opacity: .65; font-size: .75rem; }
+.nes-tile-explorer .nes-mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 300px); gap: .5rem; }
+.nes-tile-explorer .nes-mini-grid label { min-width: 0; padding: .35rem; border: 1px solid var(--line-divider); border-radius: .45rem; }
+.nes-tile-explorer .nes-mini-grid label > span { font-size: .65rem; opacity: .7; }
+.nes-tile-explorer .nes-mini-grid select { display: block; width: 100%; margin: .15rem 0 .3rem; border: 1px solid var(--line-divider); border-radius: .25rem; background: var(--card-bg); color: inherit; font: inherit; font-size: .7rem; }
+.nes-tile-explorer .nes-mini-tile { display: grid; grid-template-columns: repeat(8, 1fr); gap: 1px; aspect-ratio: 1; }
+.nes-tile-explorer .nes-mini-tile i { min-width: 0; border-radius: 1px; }
+.nes-tile-explorer .nes-note { margin: .65rem 0 0; }
+@media (max-width: 640px) { .nes-tile-explorer { padding: 1rem; } .nes-tile-explorer .nes-layout { grid-template-columns: minmax(0, 1fr); } .nes-tile-explorer .nes-hex { gap: 2px; } }
