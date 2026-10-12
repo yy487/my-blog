@@ -106,6 +106,32 @@ const jsonLd = {
                 <Content />
             </Markdown>
 
+            {entry.data.downloads.length > 0 && (
+                <section aria-labelledby="patch-downloads-heading" class="mb-6 rounded-xl bg-[var(--btn-regular-bg)] p-5">
+                    <h2 id="patch-downloads-heading" class="font-bold text-xl text-90 mb-4">补丁下载</h2>
+                    <ul class="space-y-4">
+                        {entry.data.downloads.map((download) => (
+                            <li>
+                                <div class="font-bold text-90">{download.name}</div>
+                                {download.note && <p class="text-sm text-50 whitespace-pre-wrap mt-1">{download.note}</p>}
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    {download.file && (
+                                        <a href={download.file} download aria-label={`下载${download.name}`} class="btn-regular inline-flex items-center gap-2 px-4 py-2 rounded-lg">
+                                            <Icon name="material-symbols:download-rounded" />下载补丁
+                                        </a>
+                                    )}
+                                    {download.url && (
+                                        <a href={download.url} target="_blank" rel="noopener noreferrer" aria-label={`打开${download.name}的外部下载链接`} class="btn-regular inline-flex items-center gap-2 px-4 py-2 rounded-lg">
+                                            <Icon name="material-symbols:open-in-new-rounded" />外部下载
+                                        </a>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
+
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>

@@ -1,7 +1,14 @@
 media:
-  input: public/uploads
-  output: /uploads
-  categories: [image]
+  - name: images
+    label: 图片
+    input: public/uploads
+    output: /uploads
+    categories: [image]
+  - name: patches
+    label: 补丁文件
+    input: public/downloads
+    output: /downloads
+    extensions: [zip, 7z, rar, gz, xz]
 
 content:
   - name: posts
@@ -34,6 +41,8 @@ content:
       - name: image
         label: 封面图
         type: image
+        options:
+          media: images
       - name: tags
         label: 标签
         type: string
@@ -44,12 +53,34 @@ content:
       - name: lang
         label: 文章语言（留空使用站点语言）
         type: string
+      - name: downloads
+        label: 补丁下载
+        description: 文件和外部链接可以二选一，也可同时填写。约20MB的补丁请先用本地「上传补丁」工具上传，再在这里选择。
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: 补丁名称（可包含版本）
+            type: string
+            required: true
+          - name: file
+            label: 补丁文件
+            type: file
+            options:
+              media: patches
+          - name: url
+            label: 外部下载链接（http或https）
+            type: string
+          - name: note
+            label: 补充说明（适用版本、提取码等）
+            type: text
       - name: body
         label: 正文
         type: rich-text
         options:
           format: markdown
           switcher: true
+          media: images
 
   - name: about
     label: 关于页面
@@ -81,6 +112,8 @@ content:
         label: 头像
         type: image
         required: true
+        options:
+          media: images
       - name: hue
         label: 主题色相（蓝色为250）
         type: number

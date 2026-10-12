@@ -1,0 +1,4 @@
+/downloads/*
+  Content-Disposition: attachment
+  Content-Type: application/octet-stream
+  X-Content-Type-Options: nosniff
