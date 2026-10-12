@@ -3,8 +3,27 @@ name: Code quality
 on:
   push:
     branches: [ main ] # Adjust branches as needed
+    paths:
+      - 'src/**'
+      - '!src/content/**'
+      - '!src/data/site.json'
+      - 'biome.json'
+      - 'biome.jsonc'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/biome.yml'
   pull_request:
     branches: [ main ] # Adjust branches as needed
+    paths:
+      - 'src/**'
+      - '!src/content/**'
+      - '!src/data/site.json'
+      - 'biome.json'
+      - 'biome.jsonc'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/biome.yml'
+  workflow_dispatch:
 
 jobs:
   quality:
@@ -15,6 +34,6 @@ jobs:
       - name: Setup Biome
         uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780 # v2.5.0
         with:
-          version: latest
+          version: 2.2.5
       - name: Run Biome
         run: biome ci ./src --reporter=github

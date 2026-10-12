@@ -3,8 +3,37 @@ name: Build and Check
 on:
   push:
     branches: [ main ] # Adjust branches as needed
+    paths:
+      - 'src/**'
+      - '!src/content/**'
+      - '!src/data/site.json'
+      - 'scripts/**'
+      - 'astro.config.*'
+      - 'tailwind.config.*'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.npmrc'
+      - '.github/workflows/**'
+      - 'public/_headers'
+      - 'public/_redirects'
   pull_request:
     branches: [ main ] # Adjust branches as needed
+    paths:
+      - 'src/**'
+      - '!src/content/**'
+      - '!src/data/site.json'
+      - 'scripts/**'
+      - 'astro.config.*'
+      - 'tailwind.config.*'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.npmrc'
+      - '.github/workflows/**'
+      - 'public/_headers'
+      - 'public/_redirects'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,7 +46,7 @@ jobs:
   check:
     strategy:
       matrix:
-        node: [ 22, 23 ]
+        node: [ 22 ]
     runs-on: ubuntu-latest
     name: Astro Check for Node.js ${{ matrix.node }}
     steps:
@@ -43,7 +72,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node: [ 22, 23 ]
+        node: [ 22 ]
     runs-on: ubuntu-latest
     name: Astro Build for Node.js ${{ matrix.node }} # Corrected job name
     steps:
