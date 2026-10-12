@@ -82,6 +82,16 @@ content:
           switcher: true
           media: images
 
+  - name: interactive
+    label: 互动文章（MDX源码）
+    type: collection
+    path: src/content/posts
+    format: code
+    subfolders: true
+    filename:
+      template: "{year}-{month}-{day}-{primary}.mdx"
+      field: create
+
   - name: about
     label: 关于页面
     type: file

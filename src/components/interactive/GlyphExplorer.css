@@ -1,0 +1,52 @@
+.glyph-explorer {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    border: 1px solid var(--line-divider);
+    border-radius: 1rem;
+    background: var(--card-bg);
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.glyph-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.glyph-heading h3 { margin: 0.25rem 0 0; font-size: 1.15rem; }
+.glyph-eyebrow { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--primary); }
+.glyph-state { padding: 0.35rem 0.65rem; border-radius: 0.5rem; background: var(--btn-regular-bg); font-size: 0.8rem; }
+.glyph-hint { margin: 0.8rem 0 1.2rem; font-size: 0.85rem; opacity: 0.7; }
+.glyph-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
+.glyph-grid { display: grid; grid-template-columns: repeat(17, minmax(0, 1fr)); gap: 2px; max-width: 360px; min-width: 0; margin: 0 auto; padding: 0; border: 0; }
+.glyph-grid-row { display: contents; }
+.glyph-coordinate { display: flex; align-items: center; justify-content: center; font-size: 0.6rem; opacity: 0.6; aspect-ratio: 1; }
+.glyph-pixel { width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 2px; background: var(--btn-regular-bg); cursor: pointer; }
+.glyph-pixel.is-on { background: var(--primary); }
+.glyph-pixel.is-selected, .glyph-pixel:focus-visible { outline: 2px solid #f59e0b; outline-offset: 0; z-index: 1; }
+.glyph-pixel:hover { box-shadow: inset 0 0 0 1px var(--primary); }
+.glyph-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+.glyph-actions button, .glyph-toggle { padding: 0.6rem 0.8rem; border: 0; border-radius: 0.5rem; background: var(--btn-regular-bg); color: var(--primary); font: inherit; font-size: 0.85rem; cursor: pointer; }
+.glyph-actions button:hover, .glyph-toggle:hover { background: var(--btn-regular-bg-hover); }
+.glyph-controls { display: grid; gap: 0.5rem; }
+.glyph-controls label { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+.glyph-controls label span { color: var(--primary); font-variant-numeric: tabular-nums; }
+.glyph-controls input[type="number"] { width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--line-divider); border-radius: 0.5rem; background: var(--btn-regular-bg); color: inherit; font: inherit; }
+.glyph-controls input[type="range"] { width: 100%; margin: 0.3rem 0 0.6rem; accent-color: var(--primary); }
+.glyph-toggle { display: block; width: 100%; margin-top: 0.75rem; }
+.glyph-explorer button:focus-visible, .glyph-explorer input:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.glyph-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.glyph-metrics div { padding: 0.65rem; border-radius: 0.6rem; background: var(--btn-regular-bg); }
+.glyph-metrics span { display: block; font-size: 0.7rem; opacity: 0.7; }
+.glyph-metrics strong { display: block; margin-top: 0.3rem; font-family: monospace; font-size: 1.1rem; color: var(--primary); }
+.glyph-bits { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0.3rem; margin: 0.75rem 0; }
+.glyph-bits span { padding: 0.4rem 0; border-radius: 0.35rem; background: var(--btn-regular-bg); text-align: center; font-family: monospace; }
+.glyph-bits .is-selected, .glyph-byte-table .is-selected { background: color-mix(in srgb, #f59e0b 22%, var(--card-bg)); box-shadow: inset 0 0 0 1px #f59e0b; }
+.glyph-formula { display: grid; gap: 0.35rem; padding: 0.75rem; border: 1px dashed var(--line-divider); border-radius: 0.6rem; font-family: monospace; font-size: 0.75rem; overflow-wrap: anywhere; }
+.glyph-formula span { opacity: 0.7; }
+.glyph-formula strong { font-weight: 500; margin-bottom: 0.2rem; }
+.glyph-byte-table { width: 100%; margin-top: 1rem; border-collapse: separate; border-spacing: 0 2px; font-size: 0.75rem; text-align: center; font-family: monospace; }
+.glyph-byte-table caption { text-align: left; margin-bottom: 0.5rem; font-family: inherit; font-size: 0.85rem; }
+.glyph-byte-table th { font-weight: 500; opacity: 0.65; }
+.glyph-byte-table td { padding: 0.2rem 0.4rem; border-radius: 0.3rem; }
+
+@media (max-width: 640px) {
+    .glyph-explorer { padding: 1rem; }
+    .glyph-layout { grid-template-columns: minmax(0, 1fr); }
+}
