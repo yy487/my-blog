@@ -5,11 +5,15 @@ $ErrorActionPreference = 'Stop'
 function Invoke-PatchGit {
     param([string[]]$GitArguments)
     $previousErrorPreference = $ErrorActionPreference
+    $previousConsoleEncoding = [Console]::OutputEncoding
     try {
+        # Git emits UTF-8 paths; Windows PowerShell otherwise decodes them using the console code page.
+        [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
         $ErrorActionPreference = 'Continue'
         $gitOutput = & git -c credential.helper= -c 'credential.helper=!gh auth git-credential' @GitArguments 2>&1
         $gitExitCode = $LASTEXITCODE
     } finally {
+        [Console]::OutputEncoding = $previousConsoleEncoding
         $ErrorActionPreference = $previousErrorPreference
     }
     if ($gitExitCode -ne 0) {
