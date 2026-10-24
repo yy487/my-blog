@@ -70,3 +70,12 @@ test("initial registration is restricted to the owner and requires a configured 
   await config.plugins[0].middlewares[0]({ method: "GET", path: "/api/comment" }, async () => { reached = true; });
   assert.ok(reached);
 });
+
+test("Neon variables with the configured DATABASE prefix are recognized", () => {
+  for (const name of ["DATABASE_POSTGRES_URL", "DATABASE_DATABASE_URL"]) {
+    const { env } = server({ [name]: "postgresql://reader:example-secret@db.example.com/neondb?sslmode=require" });
+    assert.equal(env.PG_DB, "neondb");
+    assert.equal(env.PG_HOST, "db.example.com");
+    assert.equal(env.PG_SSL, "true");
+  }
+});

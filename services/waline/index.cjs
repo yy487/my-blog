@@ -7,8 +7,9 @@ process.env.SITE_NAME ||= '瑜瑜的博客';
 process.env.SITE_URL = 'https://blog.yychess.top';
 process.env.MARKDOWN_TEX = 'false';
 
-// Neon integrations may provide either name; keep credentials in Vercel environment variables.
-const connection = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+// Vercel/Neon prefixes all integration variables when a custom prefix is selected.
+const connection = process.env.DATABASE_URL || process.env.POSTGRES_URL
+  || process.env.DATABASE_POSTGRES_URL || process.env.DATABASE_DATABASE_URL;
 if (connection) {
   try {
     const database = new URL(connection);
