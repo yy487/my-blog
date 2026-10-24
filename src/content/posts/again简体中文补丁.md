@@ -2,6 +2,7 @@
 title: again简体中文补丁
 published: 2026-10-24
 draft: false
+image: /uploads/20221208134829.png
 category: ai补丁
 downloads:
   - name: again简体中文补丁
