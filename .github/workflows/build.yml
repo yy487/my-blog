@@ -15,6 +15,7 @@ on:
       - 'pnpm-lock.yaml'
       - '.npmrc'
       - '.github/workflows/**'
+      - 'services/waline/**'
       - 'functions/**'
       - 'migrations/**'
       - 'public/_routes.json'
@@ -34,6 +35,7 @@ on:
       - 'pnpm-lock.yaml'
       - '.npmrc'
       - '.github/workflows/**'
+      - 'services/waline/**'
       - 'functions/**'
       - 'migrations/**'
       - 'public/_routes.json'
@@ -77,6 +79,9 @@ jobs:
 
       - name: Check download statistics
         run: node scripts/check-download-stats.mjs
+
+      - name: Check article interactions
+        run: node scripts/check-interactions.mjs
 
   build:
     strategy:

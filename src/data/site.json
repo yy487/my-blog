@@ -4,5 +4,7 @@
 	"name": "瑜瑜",
 	"bio": "code,math,and galgame",
 	"avatar": "/uploads/yuyu-avatar.png",
-	"hue": 250
+	"hue": 250,
+	"walineServerURL": "",
+	"walineTurnstileKey": ""
 }

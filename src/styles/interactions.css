@@ -1,0 +1,41 @@
+.article-interactions {
+	--waline-theme-color: var(--primary);
+	--waline-active-color: var(--primary);
+	--waline-color: #30363d;
+	--waline-bg-color: var(--card-bg);
+	--waline-bg-color-light: var(--btn-regular-bg);
+	--waline-bg-color-hover: var(--btn-regular-bg-hover);
+	--waline-border-color: var(--line-divider);
+	--waline-border: 1px solid var(--line-divider);
+	--waline-font-size: 0.95rem;
+	--waline-border-radius: 0.75rem;
+	--waline-info-color: var(--primary);
+}
+
+.interaction-share-row, .interaction-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
+
+.interaction-share-row { justify-content: space-between; gap: 1rem; }
+.interaction-button { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1rem; border-radius: 0.75rem; }
+.interaction-button svg { width: 1.1rem; height: 1.1rem; }
+.interaction-status:not(:empty) { margin-top: 0.75rem; }
+.interaction-comments { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--line-divider); }
+.interaction-like-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+.interaction-button[aria-pressed="true"] { background: var(--primary); color: white; }
+.interaction-button:disabled { cursor: wait; opacity: 0.6; }
+.interaction-copy-input { margin-top: 0.75rem; width: 100%; padding: 0.75rem; border: 1px solid var(--line-divider); border-radius: 0.75rem; color: inherit; background: var(--btn-regular-bg); }
+.article-interactions [hidden] { display: none !important; }
+.article-interactions .wl-editor { min-height: 8rem; }
+.article-interactions .wl-panel { box-shadow: none; }
+.article-interactions .wl-content { overflow-wrap: anywhere; }
+.article-interactions :is(button, input, textarea, [role="button"]):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+html.dark .article-interactions { --waline-color: #e2e5eb; }
+
+@media (max-width: 480px) {
+	.interaction-actions { width: 100%; }
+	.interaction-actions .interaction-button { flex: 1; justify-content: center; }
+}

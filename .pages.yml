@@ -131,3 +131,11 @@ content:
         options:
           min: 0
           max: 360
+      - name: walineServerURL
+        label: 评论服务地址
+        description: 填写部署好的 Waline HTTPS 地址；留空时保留分享，隐藏评论和点赞。
+        type: string
+      - name: walineTurnstileKey
+        label: 评论验证码 Site Key（可选）
+        description: 这里只填公开 Site Key；Secret Key 必须放在评论服务的环境变量中。
+        type: string
