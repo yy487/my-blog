@@ -5,6 +5,6 @@
 	"bio": "code,math,and galgame",
 	"avatar": "/uploads/yuyu-avatar.png",
 	"hue": 250,
-	"walineServerURL": "",
+	"walineServerURL": "https://my-blog-waline-swart.vercel.app",
 	"walineTurnstileKey": ""
 }
